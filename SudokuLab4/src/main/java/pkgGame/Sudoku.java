@@ -2,6 +2,7 @@ package pkgGame;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import pkgHelper.LatinSquare;
@@ -413,7 +414,7 @@ public class Sudoku extends LatinSquare {
 	}
 	
 	public boolean isValidRowValue(int iRow, int iValue) {
-
+		
 		return doesElementExist(getRow(iRow), iValue) ? false : true;
 	}
 	
@@ -440,32 +441,14 @@ public class Sudoku extends LatinSquare {
 	public ArrayList<Integer> validValues(int iRow, int iCol) {
 		
 		ArrayList<Integer> validValues = new ArrayList<Integer>();
-//		for (int i = 1; i <= iSize; i++) {
-//			validValues.add(i);
-// 		}
-//		
-//		for (int ii = 0; ii < iSize; ii++) {
-//			if (validValues.contains(getRow(iRow)[ii]) && getRow(iRow)[ii] != 0) {
-//				validValues.remove(getRow(iRow)[ii]);
-//			}
-//			if (validValues.contains(getColumn(iCol)[ii]) && getColumn(iCol)[ii] != 0) {
-//				validValues.remove(getColumn(iCol)[ii]);
-//			}
-//			if (validValues.contains(getRegion(iCol, iRow)[ii]) && getRegion(iCol, iRow)[ii] != 0) {
-//				validValues.remove(getRegion(iCol, iRow)[ii]);
-//			}
-//		}
 		
-		for (int i = 0; i < iSize; i++) {
-			if (!doesElementExist(getRow(i), i + 1) &&
-					!doesElementExist(getColumn(i), i + 1) &&
-					!doesElementExist(getRegion(i), i + 1)) {
-				validValues.add(i + 1);
+		for (int i = 1; i < iSize; i++) {
+			if (!doesElementExist(getRow(iRow), i) &&
+					!doesElementExist(getColumn(iCol), i) && 
+					!doesElementExist(getRegion(iCol, iRow), i)) {
+				validValues.add(i);
 			}
-			//if (isValidValue(iRow, iCol, iValue))
-					//validValues.add(iValue)
 		}
-		
 		return validValues;
 	}
 	

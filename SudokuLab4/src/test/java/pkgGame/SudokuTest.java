@@ -122,9 +122,48 @@ public class SudokuTest {
 		}
 
 	}
-
-
-
-
-
+	
+	@Test
+	public void isValidRowColumnRegionValue_Test() {
+		
+		//Testing for isValidRow/Column/RegionValue
+		int[][] puzzle = { { 0, 0, 0, 6, 7, 8, 9, 1, 2 }, 
+				{ 6, 7, 2, 1, 9, 5, 3, 4, 8 }, 
+				{ 1, 9, 0, 3, 4, 2, 5, 6, 7 },
+				{ 8, 5, 9, 7, 6, 1, 4, 2, 3 }, 
+				{ 4, 2, 6, 8, 5, 3, 7, 9, 1 }, 
+				{ 7, 1, 3, 9, 2, 4, 8, 5, 6 },
+				{ 0, 6, 1, 5, 3, 7, 2, 8, 4 }, 
+				{ 2, 8, 7, 4, 1, 9, 6, 3, 5 }, 
+				{ 3, 4, 5, 2, 8, 6, 1, 7, 9 }};
+		
+		try {
+			Sudoku s1 = new Sudoku(puzzle);
+			assertTrue(s1.isValidRowValue(0, 5));
+			assertFalse(s1.isValidRowValue(0, 1));
+			assertTrue(s1.isValidColumnValue(0, 9));
+			assertFalse(s1.isValidColumnValue(0, 6));
+			assertTrue(s1.isValidRegionValue(0, 0, 8));
+			assertFalse(s1.isValidRegionValue(0, 0, 7));
+		} catch (Exception e) {
+			fail("Test failed to build a sudoku (s1)");
+		}
+		
+		int[][] puzzle4x4 = {{1, 0, 3, 4},
+				{3, 4, 1, 2},
+				{4, 1, 2, 0},
+				{2, 3, 0, 1}};
+		
+		try {
+			Sudoku s2 = new Sudoku(puzzle4x4);
+			assertTrue(s2.isValidRowValue(0, 2));
+			assertFalse(s2.isValidRowValue(3, 3));
+			assertTrue(s2.isValidColumnValue(1, 2));
+			assertFalse(s2.isValidColumnValue(0, 2));
+			assertTrue(s2.isValidRegionValue(2, 2, 4));
+			assertFalse(s2.isValidRegionValue(0, 0, 4));
+		} catch (Exception e) {
+			fail("Test failed to build a sudoku (s2)");
+		}
+	}
 }

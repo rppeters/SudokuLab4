@@ -454,17 +454,19 @@ public class Sudoku extends LatinSquare {
 	
 	
 	public boolean fillRemaining(int iRow, int iCol) {
-		if (isSudoku()) {
-			return true;
-		} else if (!fillRemaining(iRow, iCol)) {
-			//backtrack because no values
-		} else {
-			//fill value
-			iRow++;
-			iCol++;
-			return fillRemaining(iRow, iCol);
+		//the first values passed in will be your starting values?
+		if (!isSudoku()) {
+			if (!fillRemaining(iRow, iCol)) {
+				//backtrack and recalculate because no more valid values
+			}
+			if (fillRemaining(iRow, iCol)) {
+				//fill next value
+			}
 		}
+		//return true since it now is Sudoku and success has been achieved :)
+		return true;		
 	}
+	
 	/*fillRemaining() steps:
 	 * 
 	 * iteration by row number first 

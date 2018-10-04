@@ -452,7 +452,19 @@ public class Sudoku extends LatinSquare {
 		return validValues;
 	}
 	
-	/*FillREgions() steps:
+	
+	public boolean fillRemaining(int iRow, int iCol) {
+		if (isSudoku()) {
+			return true;
+		} else {
+			
+			int nextCol = ++iRow;
+			int nextRow = ++iCol;
+			return fillRemaining(nextRow, nextCol);
+					
+		}
+	}
+	/*fillRemaining() steps:
 	 * 
 	 * iteration by row number first 
 	 * 		figure out remaining values for row

@@ -456,12 +456,13 @@ public class Sudoku extends LatinSquare {
 	public boolean fillRemaining(int iRow, int iCol) {
 		if (isSudoku()) {
 			return true;
+		} else if (!fillRemaining(iRow, iCol)) {
+			//backtrack because no values
 		} else {
-			
-			int nextCol = ++iRow;
-			int nextRow = ++iCol;
-			return fillRemaining(nextRow, nextCol);
-					
+			//fill value
+			iRow++;
+			iCol++;
+			return fillRemaining(iRow, iCol);
 		}
 	}
 	/*fillRemaining() steps:
